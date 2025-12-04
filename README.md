@@ -13,7 +13,7 @@ This repository contains R scripts (in the file "R") and a demo (in the file "de
 * `R/MainCode.R` — Main script to run MIGHT simulations: runs experiments, assembles result tables, and produces figures.
 * `demo/MIGHT demo.R` — A runnable demo that illustrates the MIGHT algorithm on a concrete example.
 * `package/ADSIHT_0.2.1.tar` — R package of the MIGHT method
-
+* `package/AdaL0_1.0.1.tar` — R package of separate nodewise regression
 
 ## Requirements
 R >= 4.0
