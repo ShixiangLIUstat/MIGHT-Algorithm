@@ -17,7 +17,7 @@ This repository contains R scripts (in the file "R") and a demo (in the file "de
 
 ## Requirements
 R >= 4.0
-Required packages: Matrix, glmnet, ... 
+Required packages: JGL, mvnfast, ADSIHT, snowfall, Matrix, fasjem, simule, jointgraph, AdaL0, glasso, mccr, stringr, ggpubr, latex2exp
 
 ## Run demo
 In R:
