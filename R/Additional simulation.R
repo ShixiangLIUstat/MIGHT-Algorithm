@@ -21,6 +21,7 @@ library(mccr)
 library(stringr)
 library(glasso) 
 library(latex2exp)
+library(igraph)
 
 source('./simuL.R')
 
