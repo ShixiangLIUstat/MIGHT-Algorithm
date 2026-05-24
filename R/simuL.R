@@ -13,6 +13,7 @@ library(glasso)
 library(ggpubr)
 library(latex2exp)
 library(AdaL0)
+library(igraph)
 
 source('./generate.R')
 source('./JGL MIGHT.R')
