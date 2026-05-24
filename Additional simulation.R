@@ -66,7 +66,7 @@ source('./simuL.R')
                         hub  = Hubtemp,
                         scalefree = PAtemp ) 
   
-  save(TRY1005, file = "rev_n100K5_0503.RData")
+  save(TRY1005, file = "rev_n100K5.RData")
   }
   
   
@@ -85,13 +85,15 @@ source('./simuL.R')
   
   Hubtemp = simu_L(seed=mc, n=100, K=10, p=200, link=0.05, gamma=1, type="hub",
                    lam=1, rate0=0.5, stren=0, scale = 17)
-  
+   
+  PAtemp = simu_L(seed=mc, n=100, K=10, p=200, link=0.05, gamma=1, type="scale",
+                          distr = "norm", lam=1, stren=0, scale = 17)
   TRY10010[[mc]] = list( ER   = ERtemp,
                         band = Bandtemp,
-                        hub  = Hubtemp ) 
+                        hub  = Hubtemp,
+                        scalefree = PAtemp ) 
   
-  save(TRY10010, file = "rev_n100K10_0503.RData")
+  save(TRY10010, file = "rev_n100K10.RData")
   }
   
-  
-  } 
+ 
