@@ -27,7 +27,10 @@ JointGrpah_BIC <- function(X, gamma){
   n <- sapply(X, function(x) nrow(x))
   X_list <- as.matrix(do.call(rbind, X))
   Y <- rep(1:length(X), unlist(lapply(X, nrow)))
-  lambda <- exp(seq(log(5*1e-2), log(1), length.out = 5))
+  #lambda <- exp(seq(log(5*1e-2), log(1), length.out = 5))
+              
+  lambda = 10^(seq(-3, 0, length.out = 5))
+              
   bic_results <- rep(1e10, length(lambda))
 
   for (i in seq_along(lambda)) {
@@ -54,10 +57,11 @@ JGL_EBIC <- function(X, penalty = "group", tol = 1e-3, maxiter = 200, gamma = 0)
   p <- ncol(X[[1]])
   K <- length(X)
   n <- sapply(X, function(x) nrow(x))
-  lambda1_values <- exp(seq(log(1e-4), log(0.5), length.out = 5))
-  lambda2_values <- exp(seq(log(1e-4), log(0.5), length.out = 5))
-  # lambda1_values <- exp(seq(log(ifelse (nrow(X[[1]])>=ncol(X[[1]]), 1e-6, 1e-4)), log(0.5), length.out = 5))
-  # lambda2_values <- exp(seq(log(ifelse (nrow(X[[1]])>=ncol(X[[1]]), 1e-6, 1e-4)), log(0.5), length.out = 10))
+  # lambda1_values <- exp(seq(log(1e-3), log(0), length.out = 5))
+  # lambda2_values <- exp(seq(log(1e-3), log(0), length.out = 5))
+  
+  lambda1_values = lambda2_values = 10^(seq(-3, 0, length.out = 5))
+          
   bic_results <- matrix(NA, nrow = length(lambda1_values), ncol = length(lambda2_values))
 
   for (i in seq_along(lambda1_values)) {
@@ -125,8 +129,8 @@ jewel_BIC <- function(X, gamma = 0) {
 ###### Fasjem
 library(fasjem)
 
-fasjem_EBIC <- function(X, lambda_grid = 10^( seq(-2, 1, length.out = 5) ),
-                        epsilon_grid = 10^( seq(-2, 1, length.out = 5) ),
+fasjem_EBIC <- function(X, lambda_grid = 10^( seq(-3, 0, length.out = 5) ),
+                        epsilon_grid = 10^( seq(-3, 0, length.out = 5) ),
                         gamma=1 ) {
   bic_results <- matrix(NA, nrow = length(lambda_grid), ncol = length(epsilon_grid))
   best_lambda <- NULL
