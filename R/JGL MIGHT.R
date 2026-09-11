@@ -3,6 +3,7 @@ library(snowfall)
 library(parallel)
 library(Matrix) 
 
+# Parallel computing
 # sfInit(parallel = TRUE, cpus = detectCores() - 6)
 # sfLibrary(ADSIHT)
 # sfLibrary(Matrix)
@@ -54,12 +55,20 @@ JGML <- function(X, ic.coef = 1, ic.scale = 2, coef1 = 1, coef2 = 0.1,
   p <- ncol(X[[1]])
   K <- length(X)
   n <- sapply(X, function(x) nrow(x)) #sample size of each task
-  
-  res <- sfLapply(1:p, function(num) MT_DSIHT(num, X = X, n = n, K = K, p = p, 
+
+  # parallel computing            
+  # res <- sfLapply(1:p, function(num) MT_DSIHT(num, X = X, n = n, K = K, p = p, 
+  #                                             ic.coef = ic.coef, ic.scale = ic.scale,
+  #                                             coef1 = coef1, coef2 = coef2, 
+  #                                             kappa = kappa, eta=eta, 
+  #                                             center = center, scale= scale))
+
+  # Non parallel
+  res <- lapply(1:p, function(num) MT_DSIHT(num, X = X, n = n, K = K, p = p,
                                               ic.coef = ic.coef, ic.scale = ic.scale,
-                                              coef1 = coef1, coef2 = coef2, 
-                                              kappa = kappa, eta=eta, 
-                                              center = center, scale= scale))
+                                              coef1 = coef1, coef2 = coef2,
+                                              kappa = kappa, eta=eta,
+                                              center = center, scale= scale) )
   
   res_Omega <- lapply(1:K, function(i) matrix(unlist(purrr::map(res, ~.x[[i]])), ncol = p))
   res_Omega <- lapply(res_Omega, function(A) {
