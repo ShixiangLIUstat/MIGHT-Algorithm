@@ -27,8 +27,8 @@ JointGrpah_BIC <- function(X, gamma){
   n <- sapply(X, function(x) nrow(x))
   X_list <- as.matrix(do.call(rbind, X))
   Y <- rep(1:length(X), unlist(lapply(X, nrow)))
-  #lambda <- exp(seq(log(5*1e-2), log(1), length.out = 5))
               
+  #lambda <- exp(seq(log(5*1e-2), log(1), length.out = 5))
   lambda = 10^(seq(-3, 0, length.out = 5))
               
   bic_results <- rep(1e10, length(lambda))
@@ -69,9 +69,7 @@ JGL_EBIC <- function(X, penalty = "group", tol = 1e-3, maxiter = 200, gamma = 0)
       lambda1 <- lambda1_values[i]
       lambda2 <- lambda2_values[j]
 
-
       fit <- JGL(Y = X, penalty = penalty, lambda1 = lambda1, lambda2 = lambda2, return.whole.theta = T, tol = tol, maxiter = maxiter, truncate = 1e-4)
-
 
       bic_results[i, j] <- Calculate_ebic(fit$theta, X, n, p, gamma)
     }
